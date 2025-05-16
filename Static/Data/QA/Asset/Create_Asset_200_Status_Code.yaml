@@ -1,0 +1,19 @@
+Create_Asset_200_Status_Code:
+  Preconditions:
+    Username: johndoe2
+  Request:
+    Params:
+    Body:
+      name: Laptop Lenovo
+      category: Electronics
+      location: Office
+      status: activo
+      purchase_price: 1000.00
+  Expected_Response:
+    httpStatus: '200'
+    Body:
+      name: Laptop Lenovo
+      category: Electronics
+      location: Office
+      status: activo
+      purchase_price: 1000.00

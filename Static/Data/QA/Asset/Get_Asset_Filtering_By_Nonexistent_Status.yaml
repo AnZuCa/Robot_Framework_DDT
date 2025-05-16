@@ -1,0 +1,9 @@
+Get_Asset_Filtering_By_Nonexistent_Status:
+  Preconditions:
+    Username: johndoe2
+  Request:
+    Params:
+      status: Inactive
+  Expected_Response:
+    httpStatus: '200'
+    Body: []

@@ -1,0 +1,11 @@
+Get_Asset_Filtering_By_Invalid_Range_Prices:
+  Preconditions:
+    Username: johndoe2
+  Request:
+    Params:
+      min_price: 650
+      max_price: 400
+  Expected_Response:
+    httpStatus: '400'
+    Body:
+      detail: El precio mínimo no puede ser mayor que el precio máximo

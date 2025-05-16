@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "purchase_price": {
+      "type": "number"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+       "format": "date-time"
+    }
+  },
+  "required": [
+    "name",
+    "category",
+    "location",
+    "status",
+    "purchase_price",
+    "id",
+    "created_at"
+  ]
+}

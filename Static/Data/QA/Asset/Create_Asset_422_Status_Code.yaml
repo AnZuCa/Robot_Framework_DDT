@@ -1,0 +1,25 @@
+Create_Asset_422_Status_Code:
+  Preconditions:
+    Username: johndoe2
+  Request:
+    Params:
+    Body:
+      name: Laptop Lenovo
+      location: Office
+      status: activo
+      purchase_price: 1000.00
+  Expected_Response:
+    httpStatus: '422'
+    Body:
+      detail:
+      - type: missing
+        loc:
+        - body
+        - category
+        msg: Field required
+        input:
+          name: Laptop Lenovo
+          location: Office
+          status: activo
+          purchase_price: 1000.0
+        url: https://errors.pydantic.dev/2.11/v/missing

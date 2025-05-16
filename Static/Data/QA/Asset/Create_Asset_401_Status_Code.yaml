@@ -1,0 +1,16 @@
+Create_Asset_401_Status_Code:
+  Preconditions:
+    Username: johndoe2
+  Uncheck_Authentication: True
+  Request:
+    Params:
+    Body:
+      name: Laptop Lenovo
+      category: Electronics
+      location: Office
+      status: activo
+      purchase_price: 1000.00
+  Expected_Response:
+    httpStatus: '401'
+    Body:
+      detail: Not authenticated

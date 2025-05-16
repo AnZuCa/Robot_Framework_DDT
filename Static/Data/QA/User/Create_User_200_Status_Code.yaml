@@ -1,0 +1,13 @@
+Create_User_200_Status_Code:
+  Preconditions:
+  Schema_Type: Valid
+  Request:
+    Params:
+    Body:
+      username: newuser
+      password: test
+  Expected_Response:
+    httpStatus: '200'
+    Body:
+      username: newuser
+      password: test

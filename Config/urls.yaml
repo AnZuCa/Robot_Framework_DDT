@@ -1,0 +1,7 @@
+common_urls:
+  assets_api:
+    post_user: /users
+    login: /auth/token
+    post_asset: /assets
+    get_asset: /assets
+    get_assets: /assets

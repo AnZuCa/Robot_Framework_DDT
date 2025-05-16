@@ -1,0 +1,16 @@
+Get_Asset_Filtering_By_Category:
+  Preconditions:
+    Username: johndoe2
+  Request:
+    Params:
+      category: 'Furniture'
+  Expected_Response:
+    httpStatus: '200'
+    Body:
+      - name: Desktop HP
+        category: Furniture
+        location: Warehouse Belen
+        status: activo
+        purchase_price: 1200
+        id: 15
+        created_at: '2025-05-15T15:17:30.961414'

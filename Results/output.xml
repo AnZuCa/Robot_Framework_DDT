@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.11.5 on darwin)" generated="2025-05-15T10:18:47.923467" rpa="false" schemaversion="5">
+<suite id="s1" name="Robot Framework" source="/Users/andreszuniga/Documents/robot_framework">
+<suite id="s1-s1" name="Tests" source="/Users/andreszuniga/Documents/robot_framework/Tests">
+<suite id="s1-s1-s1" name="API" source="/Users/andreszuniga/Documents/robot_framework/Tests/API">
+<suite id="s1-s1-s1-s1" name="Asset" source="/Users/andreszuniga/Documents/robot_framework/Tests/API/Asset">
+<suite id="s1-s1-s1-s1-s1" name="Get Assets Filtering" source="/Users/andreszuniga/Documents/robot_framework/Tests/API/Asset/get_assets_filtering.robot">
+<test id="s1-s1-s1-s1-s1-t1" name="Get All Assets - Filtering By Nonexistent Status" line="32">
+<kw name="Authentication Preconditions" owner="api_helper" type="SETUP">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-05-15T10:18:48.078228" level="INFO">${preconditions} = {'Username': 'johndoe2'}</msg>
+<var>${preconditions}</var>
+<arg>dictionary=${data}</arg>
+<arg>key=Preconditions</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.078061" elapsed="0.000228"/>
+</kw>
+<kw name="Get From Dictionary If Exists" owner="asset_api_common">
+<if>
+<branch type="IF" condition="'${key}' in ${dictionary}">
+<kw name="Get From Dictionary" owner="Collections">
+<var>${value}</var>
+<arg>${dictionary}</arg>
+<arg>${key}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.078726" elapsed="0.000038"/>
+</kw>
+<return>
+<value>${value}</value>
+<status status="NOT RUN" start="2025-05-15T10:18:48.078809" elapsed="0.000022"/>
+</return>
+<status status="NOT RUN" start="2025-05-15T10:18:48.078600" elapsed="0.000251"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>${default}</value>
+<status status="PASS" start="2025-05-15T10:18:48.078904" elapsed="0.000080"/>
+</return>
+<status status="PASS" start="2025-05-15T10:18:48.078872" elapsed="0.000139"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.078586" elapsed="0.000441"/>
+</if>
+<msg time="2025-05-15T10:18:48.079077" level="INFO">${password} = securepassword123</msg>
+<var>${password}</var>
+<arg>dictionary=${preconditions}</arg>
+<arg>key=Password</arg>
+<arg>default=${DEFAULT_ASSETS_API_PASSWORD}</arg>
+<status status="PASS" start="2025-05-15T10:18:48.078418" elapsed="0.000698"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-05-15T10:18:48.079348" level="INFO">${user_name} = johndoe2</msg>
+<var>${user_name}</var>
+<arg>dictionary=${preconditions}</arg>
+<arg>key=Username</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.079189" elapsed="0.000192"/>
+</kw>
+<kw name="Create Headers" owner="api_helper">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-05-15T10:18:48.079793" level="INFO">&amp;{headers} = { Content-Type=application/x-www-form-urlencoded }</msg>
+<var>&amp;{headers}</var>
+<arg>Content-Type=${content_type}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.079658" elapsed="0.000212"/>
+</kw>
+<if>
+<branch type="IF" condition="'${token}' != 'None'">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=Bearer ${token}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.080022" elapsed="0.000039"/>
+</kw>
+<status status="NOT RUN" start="2025-05-15T10:18:48.079926" elapsed="0.000168"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.079916" elapsed="0.000195"/>
+</if>
+<return>
+<value>${headers}</value>
+<status status="PASS" start="2025-05-15T10:18:48.080125" elapsed="0.000058"/>
+</return>
+<msg time="2025-05-15T10:18:48.080236" level="INFO">${headers} = {'Content-Type': 'application/x-www-form-urlencoded'}</msg>
+<var>${headers}</var>
+<arg>${None}</arg>
+<arg>application/x-www-form-urlencoded</arg>
+<status status="PASS" start="2025-05-15T10:18:48.079478" elapsed="0.000789"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-05-15T10:18:48.080486" level="INFO">${data_request} = {'username': 'johndoe2', 'password': 'securepassword123'}</msg>
+<var>${data_request}</var>
+<arg>username=${user_name}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.080335" elapsed="0.000182"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-05-15T10:18:48.282341" level="INFO">POST Request : url=http://127.0.0.1:8000/auth/token 
+ path_url=/auth/token 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '44'} 
+ body=username=johndoe2&amp;password=securepassword123 
+ </msg>
+<msg time="2025-05-15T10:18:48.282474" level="INFO">POST Response : url=http://127.0.0.1:8000/auth/token 
+ status=200, reason=OK 
+ headers={'date': 'Thu, 15 May 2025 16:18:47 GMT', 'server': 'uvicorn', 'content-length': '169', 'content-type': 'application/json'} 
+ body={"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lMiIsImV4cCI6MTc0NzMyNzcyOH0.u-EflE6OT5KbDbQaYUf-I7nLTcnqD7IIkhbyPEDGvO0","token_type":"bearer"} 
+ </msg>
+<msg time="2025-05-15T10:18:48.282602" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${AUTHENTICATE_URL}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=200</arg>
+<arg>data=${data_request}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.080585" elapsed="0.202057"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-05-15T10:18:48.283530" level="INFO">${token} = {'Authentication': {'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lMiIsImV4cCI6MTc0NzMyNzcyOH0.u-EflE6OT5KbDbQaYUf-I7nLTcnqD7IIkhbyPEDGvO0', 'token_type': 'bearer'}}</msg>
+<var>${token}</var>
+<arg>Authentication=${response.json()}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.282809" elapsed="0.000830"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>dictionary=${data}</arg>
+<arg>Authentication_Token=${token}[Authentication][access_token]</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.283753" elapsed="0.000238"/>
+</kw>
+<arg>${Get_Asset_Filtering_By_Nonexistent_Status}</arg>
+<doc>Precondition steps to authenticate a user.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.077542" elapsed="0.206525"/>
+</kw>
+<kw name="Validate Get All Assets">
+<kw name="Get All Assets" owner="get_all_assets">
+<kw name="Create Asset API Headers" owner="asset_api_common">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-05-15T10:18:48.285332" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<var>&amp;{headers}</var>
+<arg>Content-Type=${content_type}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.285172" elapsed="0.000211"/>
+</kw>
+<kw name="Get From Dictionary If Exists" owner="asset_api_common">
+<if>
+<branch type="IF" condition="'${key}' in ${dictionary}">
+<kw name="Get From Dictionary" owner="Collections">
+<var>${value}</var>
+<arg>${dictionary}</arg>
+<arg>${key}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.285866" elapsed="0.000044"/>
+</kw>
+<return>
+<value>${value}</value>
+<status status="NOT RUN" start="2025-05-15T10:18:48.285960" elapsed="0.000028"/>
+</return>
+<status status="NOT RUN" start="2025-05-15T10:18:48.285698" elapsed="0.000316"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>${default}</value>
+<status status="PASS" start="2025-05-15T10:18:48.286213" elapsed="0.000040"/>
+</return>
+<status status="PASS" start="2025-05-15T10:18:48.286113" elapsed="0.000175"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.285681" elapsed="0.000623"/>
+</if>
+<msg time="2025-05-15T10:18:48.286356" level="INFO">${Uncheck_Authentication} = False</msg>
+<var>${Uncheck_Authentication}</var>
+<arg>dictionary=${data}</arg>
+<arg>key=Uncheck_Authentication</arg>
+<arg>default=${False}</arg>
+<status status="PASS" start="2025-05-15T10:18:48.285507" elapsed="0.000951"/>
+</kw>
+<if>
+<branch type="IF" condition="not ${Uncheck_Authentication}">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${headers}</arg>
+<arg>Authorization=Bearer ${data}[Authentication_Token]</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.286717" elapsed="0.000146"/>
+</kw>
+<status status="PASS" start="2025-05-15T10:18:48.286580" elapsed="0.000325"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.286568" elapsed="0.000356"/>
+</if>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>dictionary=${data}[Request]</arg>
+<arg>Headers=${headers}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.286961" elapsed="0.000146"/>
+</kw>
+<arg>${data}</arg>
+<status status="PASS" start="2025-05-15T10:18:48.284959" elapsed="0.002253"/>
+</kw>
+<kw name="Get Test Data Request Params" owner="asset_api_common">
+<kw name="Get From Dictionary If Exists" owner="asset_api_common">
+<if>
+<branch type="IF" condition="'${key}' in ${dictionary}">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-05-15T10:18:48.288255" level="INFO">${value} = {'status': 'Inactive'}</msg>
+<var>${value}</var>
+<arg>${dictionary}</arg>
+<arg>${key}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.288086" elapsed="0.000294"/>
+</kw>
+<return>
+<value>${value}</value>
+<status status="PASS" start="2025-05-15T10:18:48.288436" elapsed="0.000090"/>
+</return>
+<status status="PASS" start="2025-05-15T10:18:48.287911" elapsed="0.000655"/>
+</branch>
+<branch type="ELSE">
+<return>
+<value>${default}</value>
+<status status="NOT RUN" start="2025-05-15T10:18:48.288645" elapsed="0.000023"/>
+</return>
+<status status="NOT RUN" start="2025-05-15T10:18:48.288598" elapsed="0.000098"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.287888" elapsed="0.000826"/>
+</if>
+<msg time="2025-05-15T10:18:48.288822" level="INFO">${request_params} = {'status': 'Inactive'}</msg>
+<var>${request_params}</var>
+<arg>dictionary=${data}[Request]</arg>
+<arg>key=Params</arg>
+<status status="PASS" start="2025-05-15T10:18:48.287632" elapsed="0.001246"/>
+</kw>
+<if>
+<branch type="IF" condition="not $request_params or not isinstance(${request_params}, dict)">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${request_params}</var>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.289258" elapsed="0.000094"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>dictionary=${data}[Request]</arg>
+<arg>Params=${request_params}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.289465" elapsed="0.000055"/>
+</kw>
+<status status="NOT RUN" start="2025-05-15T10:18:48.288941" elapsed="0.000626"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.288931" elapsed="0.000660"/>
+</if>
+<return>
+<value>${request_params}</value>
+<status status="PASS" start="2025-05-15T10:18:48.289616" elapsed="0.000046"/>
+</return>
+<arg>${data}</arg>
+<doc>Returns the default params to be used in a request or
+returns an empty dictionary otherwise</doc>
+<status status="PASS" start="2025-05-15T10:18:48.287353" elapsed="0.002374"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-05-15T10:18:48.294354" level="INFO">GET Request : url=http://127.0.0.1:8000/assets?status=Inactive 
+ path_url=/assets?status=Inactive 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lMiIsImV4cCI6MTc0NzMyNzcyOH0.u-EflE6OT5KbDbQaYUf-I7nLTcnqD7IIkhbyPEDGvO0'} 
+ body=None 
+ </msg>
+<msg time="2025-05-15T10:18:48.294461" level="INFO">GET Response : url=http://127.0.0.1:8000/assets?status=Inactive 
+ status=200, reason=OK 
+ headers={'date': 'Thu, 15 May 2025 16:18:48 GMT', 'server': 'uvicorn', 'content-length': '2', 'content-type': 'application/json'} 
+ body=[] 
+ </msg>
+<msg time="2025-05-15T10:18:48.294575" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${GET_ALL_ASSETS_URL}</arg>
+<arg>headers=${data}[Request][Headers]</arg>
+<arg>params=${data}[Request][Params]</arg>
+<arg>expected_status=${data}[Expected_Response][httpStatus]</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.289811" elapsed="0.004794"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>dictionary=${data}</arg>
+<arg>Actual_Response=${response.json()}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.294746" elapsed="0.000458"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-05-15T10:18:48.295259" elapsed="0.000129"/>
+</return>
+<arg>${data}</arg>
+<doc>Get All Assets</doc>
+<status status="PASS" start="2025-05-15T10:18:48.284637" elapsed="0.010825"/>
+</kw>
+<kw name="Verify Get All Assets Schema" owner="get_all_assets">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-05-15T10:18:48.296812" level="INFO">${expected_status} = 200</msg>
+<var>${expected_status}</var>
+<arg>${data}[Expected_Response]</arg>
+<arg>httpStatus</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.295801" elapsed="0.001071"/>
+</kw>
+<if>
+<branch type="IF" condition="${expected_status} == '200'">
+<kw name="Validate Schema" owner="asset_api_common">
+<arg>${data}</arg>
+<arg>schema_path=${GET_ALL_ASSETS_200_STATUS_CODE_SCHEMA}</arg>
+<doc>Validate an api response against a schema.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.297102" elapsed="0.000052"/>
+</kw>
+<status status="NOT RUN" start="2025-05-15T10:18:48.296946" elapsed="0.000244"/>
+</branch>
+<branch type="ELSE IF" condition="${expected_status} == '400'">
+<kw name="Validate Schema" owner="asset_api_common">
+<arg>${data}</arg>
+<arg>schema_path=${INVALID_REQUEST_SCHEMA}</arg>
+<doc>Validate an api response against a schema.</doc>
+<status status="NOT RUN" start="2025-05-15T10:18:48.297341" elapsed="0.000040"/>
+</kw>
+<status status="NOT RUN" start="2025-05-15T10:18:48.297207" elapsed="0.000207"/>
+</branch>
+<status status="PASS" start="2025-05-15T10:18:48.296934" elapsed="0.000496"/>
+</if>
+<arg>${data}</arg>
+<doc>Validate the get all assets Schema.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.295594" elapsed="0.001860"/>
+</kw>
+<kw name="Verify Get All Assets Response" owner="get_all_assets">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${data}[Actual_Response]</arg>
+<arg>${data}[Expected_Response][Body]</arg>
+<arg>msg=The response for creating an asset unexpectedly did not match the actual response.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.297689" elapsed="0.000166"/>
+</kw>
+<arg>${data}</arg>
+<doc>Validate the Get All Assets Response.</doc>
+<status status="PASS" start="2025-05-15T10:18:48.297519" elapsed="0.000383"/>
+</kw>
+<arg>${Get_Asset_Filtering_By_Nonexistent_Status}</arg>
+<doc>Validate Get All Assets endpoint</doc>
+<status status="PASS" start="2025-05-15T10:18:48.284316" elapsed="0.013624"/>
+</kw>
+<doc>Verify Get All Asset endpoint is returning an
+empty list for nonexistent status</doc>
+<tag>123413</tag>
+<status status="PASS" start="2025-05-15T10:18:48.077078" elapsed="0.220996"/>
+</test>
+<doc>Get All Assets Tests</doc>
+<status status="PASS" start="2025-05-15T10:18:47.938822" elapsed="0.359674"/>
+</suite>
+<status status="PASS" start="2025-05-15T10:18:47.938298" elapsed="0.360848"/>
+</suite>
+<status status="PASS" start="2025-05-15T10:18:47.937764" elapsed="0.361930"/>
+</suite>
+<status status="PASS" start="2025-05-15T10:18:47.937170" elapsed="0.362921"/>
+</suite>
+<status status="PASS" start="2025-05-15T10:18:47.926559" elapsed="0.373965"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">123413</stat>
+</tag>
+<suite>
+<stat name="Robot Framework" id="s1" pass="1" fail="0" skip="0">Robot Framework</stat>
+<stat name="Tests" id="s1-s1" pass="1" fail="0" skip="0">Robot Framework.Tests</stat>
+<stat name="API" id="s1-s1-s1" pass="1" fail="0" skip="0">Robot Framework.Tests.API</stat>
+<stat name="Asset" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Robot Framework.Tests.API.Asset</stat>
+<stat name="Get Assets Filtering" id="s1-s1-s1-s1-s1" pass="1" fail="0" skip="0">Robot Framework.Tests.API.Asset.Get Assets Filtering</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

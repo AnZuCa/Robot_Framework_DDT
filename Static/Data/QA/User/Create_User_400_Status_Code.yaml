@@ -1,0 +1,13 @@
+Create_Duplicated_User:
+  Preconditions:
+  Schema_Type: Invalid
+  Request:
+    Params:
+    Body:
+      username: newuser
+      password: test
+  Expected_Response:
+    httpStatus: '400'
+    Body:
+      username: newuser
+      password: test
